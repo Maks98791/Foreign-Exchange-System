@@ -3,6 +3,9 @@ package com.example.ForeignExchangeSystem.controller;
 import com.example.ForeignExchangeSystem.model.RestUser;
 import com.example.ForeignExchangeSystem.model.UpdateUserDetailsRequestModel;
 import com.example.ForeignExchangeSystem.model.UserDetailsRequestModel;
+import com.example.ForeignExchangeSystem.userService.UserService;
+import com.example.ForeignExchangeSystem.userService.UserServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,9 @@ import java.util.UUID;
 public class UserController {
 
     Map<String, RestUser> users;
+
+    @Autowired
+    UserService userService;
     //produces ustala typ zwracanego pliku
     @GetMapping(path="/{userId}",
             produces = {MediaType.APPLICATION_XML_VALUE,
@@ -52,15 +58,7 @@ public class UserController {
 
     public ResponseEntity<RestUser> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails)
     {
-        RestUser value = new RestUser();
-        value.setEmail(userDetails.getEmail());
-        value.setMoney(userDetails.getMoney());
-        value.setPassword(userDetails.getPassword());
-
-        String userId = UUID.randomUUID().toString();
-        value.setId(userId);
-        if(users == null) users = new HashMap<>();
-        users.put(userId, value);
+        RestUser value = userService.createUser(userDetails);
         return new ResponseEntity<RestUser>(value, HttpStatus.OK);
     }
     @PutMapping(path="/{userId}", consumes = {MediaType.APPLICATION_XML_VALUE,
