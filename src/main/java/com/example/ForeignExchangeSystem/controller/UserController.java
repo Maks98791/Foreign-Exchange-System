@@ -1,6 +1,6 @@
 package com.example.ForeignExchangeSystem.controller;
 
-import com.example.ForeignExchangeSystem.DTO.UserDTO;
+import com.example.ForeignExchangeSystem.model.RestUser;
 import com.example.ForeignExchangeSystem.model.UpdateUserDetailsRequestModel;
 import com.example.ForeignExchangeSystem.model.UserDetailsRequestModel;
 import org.springframework.http.HttpStatus;
@@ -17,20 +17,20 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserController {
 
-    Map<String, UserDTO> users;
+    Map<String, RestUser> users;
     //produces ustala typ zwracanego pliku
     @GetMapping(path="/{userId}",
             produces = {MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<UserDTO> getUser(@PathVariable String userId)
+    public ResponseEntity<RestUser> getUser(@PathVariable String userId)
     {
         if(users.containsKey(userId))
         {
-            return new ResponseEntity<UserDTO>(users.get(userId), HttpStatus.OK);
+            return new ResponseEntity<RestUser>(users.get(userId), HttpStatus.OK);
         }
         else
         {
-            return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<RestUser>(HttpStatus.NO_CONTENT);
         }
 
     }
@@ -50,9 +50,9 @@ public class UserController {
             produces = {MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE})
 
-    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails)
+    public ResponseEntity<RestUser> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails)
     {
-        UserDTO value = new UserDTO();
+        RestUser value = new RestUser();
         value.setEmail(userDetails.getEmail());
         value.setMoney(userDetails.getMoney());
         value.setPassword(userDetails.getPassword());
@@ -61,15 +61,15 @@ public class UserController {
         value.setId(userId);
         if(users == null) users = new HashMap<>();
         users.put(userId, value);
-        return new ResponseEntity<UserDTO>(value, HttpStatus.OK);
+        return new ResponseEntity<RestUser>(value, HttpStatus.OK);
     }
     @PutMapping(path="/{userId}", consumes = {MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE})
-    public UserDTO updateUser(@PathVariable String userId, @RequestBody UpdateUserDetailsRequestModel userDetails)
+    public RestUser updateUser(@PathVariable String userId, @RequestBody UpdateUserDetailsRequestModel userDetails)
     {
-        UserDTO storedUserDetails= users.get(userId);
+        RestUser storedUserDetails= users.get(userId);
         storedUserDetails.setMoney(userDetails.getMoney());
         users.put(userId, storedUserDetails);
 

@@ -1,20 +1,20 @@
-package com.example.ForeignExchangeSystem.DTO;
+package com.example.ForeignExchangeSystem.model;
 
-public class UserDTO {
+public class RestUser {
 
     String id;
     String email;
     String password;
     double money; //na razie zamiast klasy wallet żeby było łatwiej ogarnąć :*
 
-    public UserDTO(String id, String email, String password, double money) {
+    public RestUser(String id, String email, String password, double money) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.money = money;
     }
 
-    public UserDTO() {
+    public RestUser() {
     }
 
     public String getId() {
