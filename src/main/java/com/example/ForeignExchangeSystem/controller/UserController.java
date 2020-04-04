@@ -1,6 +1,7 @@
 package com.example.ForeignExchangeSystem.controller;
 
 import com.example.ForeignExchangeSystem.DTO.UserDTO;
+import com.example.ForeignExchangeSystem.model.UpdateUserDetailsRequestModel;
 import com.example.ForeignExchangeSystem.model.UserDetailsRequestModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -62,16 +63,24 @@ public class UserController {
         users.put(userId, value);
         return new ResponseEntity<UserDTO>(value, HttpStatus.OK);
     }
-    @PutMapping
-    public String updateUser()
+    @PutMapping(path="/{userId}", consumes = {MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_JSON_VALUE})
+    public UserDTO updateUser(@PathVariable String userId, @RequestBody UpdateUserDetailsRequestModel userDetails)
     {
-        return "update user was called";
+        UserDTO storedUserDetails= users.get(userId);
+        storedUserDetails.setMoney(userDetails.getMoney());
+        users.put(userId, storedUserDetails);
+
+        return storedUserDetails;
     }
 
-    @DeleteMapping
-    public String deleteUser()
+    @DeleteMapping(path="/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String userId)
     {
-        return "delete user was called";
+        users.remove(userId);
+        return ResponseEntity.noContent().build();
     }
 
 }
