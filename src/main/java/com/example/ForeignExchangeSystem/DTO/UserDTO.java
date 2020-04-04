@@ -2,12 +2,12 @@ package com.example.ForeignExchangeSystem.DTO;
 
 public class UserDTO {
 
-    int id;
+    String id;
     String email;
     String password;
     double money; //na razie zamiast klasy wallet żeby było łatwiej ogarnąć :*
 
-    public UserDTO(int id, String email, String password, double money) {
+    public UserDTO(String id, String email, String password, double money) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -17,11 +17,11 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

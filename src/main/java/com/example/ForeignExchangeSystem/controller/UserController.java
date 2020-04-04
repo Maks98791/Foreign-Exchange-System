@@ -1,24 +1,37 @@
 package com.example.ForeignExchangeSystem.controller;
 
 import com.example.ForeignExchangeSystem.DTO.UserDTO;
+import com.example.ForeignExchangeSystem.model.UserDetailsRequestModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
+    Map<String, UserDTO> users;
     //produces ustala typ zwracanego pliku
     @GetMapping(path="/{userId}",
             produces = {MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE})
-    public UserDTO getUser(@PathVariable String userId)
+    public ResponseEntity<UserDTO> getUser(@PathVariable String userId)
     {
-        UserDTO value = new UserDTO();
-        value.setEmail("kasia@gmail.com");
-        value.setMoney(20.00);
-        
-        return value;
+        if(users.containsKey(userId))
+        {
+            return new ResponseEntity<UserDTO>(users.get(userId), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+        }
+
     }
 
     // /users?page=1&limit=50
@@ -31,16 +44,30 @@ public class UserController {
     {
         return "get user was called with page ="+page +" and limit "+limit;
     }
-    @PostMapping
-    public String createUser()
+    @PostMapping(consumes = {MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE})
+
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails)
     {
-        return "create user was called";
+        UserDTO value = new UserDTO();
+        value.setEmail(userDetails.getEmail());
+        value.setMoney(userDetails.getMoney());
+        value.setPassword(userDetails.getPassword());
+
+        String userId = UUID.randomUUID().toString();
+        value.setId(userId);
+        if(users == null) users = new HashMap<>();
+        users.put(userId, value);
+        return new ResponseEntity<UserDTO>(value, HttpStatus.OK);
     }
     @PutMapping
     public String updateUser()
     {
         return "update user was called";
     }
+
     @DeleteMapping
     public String deleteUser()
     {
