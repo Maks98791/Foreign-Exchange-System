@@ -14,4 +14,8 @@ public class HomeController {
         view.setViewName("index");
         return view;
     }
+    @GetMapping("/register")
+    public String Register() {
+        return "register";
+    }
 }
