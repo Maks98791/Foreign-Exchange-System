@@ -1,7 +1,11 @@
 package com.example.ForeignExchangeSystem.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -9,16 +13,46 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
+
+    @Column(name = "email")
     @Email
     private String email;
+
+    @Column(name = "password")
+    @NotNull
+    @Length(min = 6, max=16, message = "Hasło musi składać się z min. 6 i maks. 16 znakow")
     private String password;
+
+    @Column(name ="name")
+    @NotNull
+    @NotEmpty(message = "Podaj imie!")
+    private String name;
+
+    @Column(name  = "last_name")
+    @NotNull
+    private String lastName;
+
+    @Column(name = "active")
+    @NotNull
+    private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
     @Transient
-    private String passwordConfirm;
-    //@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(unique = true)
-    //private Wallet wallet;
+    private String operacja;
+
+    public String getOperacja() {
+        return operacja;
+    }
+
+    public void setOperacja(String operacja) {
+        this.operacja = operacja;
+    }
 
     public Long getId() {
         return id;
@@ -35,15 +69,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    /*
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
-     */
 
     public String getPassword() {
         return password;
@@ -53,12 +78,35 @@ public class User {
         this.password = password;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    public String getName() {
+        return name;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
