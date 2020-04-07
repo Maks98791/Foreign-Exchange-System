@@ -17,10 +17,5 @@ public class HomeController {
         view.setViewName("index");
         return view;
     }
-    @GetMapping("/register")
-    public String Register(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "register";
-    }
+
 }

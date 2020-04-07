@@ -1,6 +1,7 @@
 package com.example.ForeignExchangeSystem.Service;
 
 import com.example.ForeignExchangeSystem.model.User;
+import com.example.ForeignExchangeSystem.model.Role;
 import com.example.ForeignExchangeSystem.repository.RoleRepository;
 import com.example.ForeignExchangeSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.Role;
 import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -38,8 +38,7 @@ public class UserServiceImpl implements UserService {
         user.setActive(1); //aktywuje użytkonika czyli moze sie logowac do systemu
 
         Role role = roleRepository.findByRole("ROLE_ADMIN"); //odczytanie id roli
-        user.setRoles(new HashSet<Role>(Arrays.asList(role)));  //odbierammy id roli i wkladamy je do tworoznego usera
-
-        userRepository.save(user); //zapisujemy usera do repo 
+        user.setRoles(new HashSet<Role>(Arrays.asList(role)));
+        userRepository.save(user); //zapisujemy usera do repo
     }
 }
