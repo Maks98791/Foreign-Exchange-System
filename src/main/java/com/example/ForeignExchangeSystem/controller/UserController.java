@@ -3,8 +3,7 @@ package com.example.ForeignExchangeSystem.controller;
 import com.example.ForeignExchangeSystem.model.RestUser;
 import com.example.ForeignExchangeSystem.model.UpdateUserDetailsRequestModel;
 import com.example.ForeignExchangeSystem.model.UserDetailsRequestModel;
-import com.example.ForeignExchangeSystem.userService.UserService;
-import com.example.ForeignExchangeSystem.userService.UserServiceImp;
+import com.example.ForeignExchangeSystem.userService.UserService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,9 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -23,7 +20,7 @@ public class UserController {
     Map<String, RestUser> users;
 
     @Autowired
-    UserService userService;
+    UserService2 userService2;
     //produces ustala typ zwracanego pliku
     @GetMapping(path="/{userId}",
             produces = {MediaType.APPLICATION_XML_VALUE,
@@ -58,7 +55,7 @@ public class UserController {
 
     public ResponseEntity<RestUser> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails)
     {
-        RestUser value = userService.createUser(userDetails);
+        RestUser value = userService2.createUser(userDetails);
         return new ResponseEntity<RestUser>(value, HttpStatus.OK);
     }
     @PutMapping(path="/{userId}", consumes = {MediaType.APPLICATION_XML_VALUE,

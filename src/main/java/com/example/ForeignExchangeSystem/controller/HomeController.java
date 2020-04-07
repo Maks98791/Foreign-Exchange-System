@@ -1,5 +1,6 @@
 package com.example.ForeignExchangeSystem.controller;
 
+import com.example.ForeignExchangeSystem.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,9 @@ public class HomeController {
         return view;
     }
     @GetMapping("/register")
-    public String Register() {
+    public String Register(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "register";
     }
 }

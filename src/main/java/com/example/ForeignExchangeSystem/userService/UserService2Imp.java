@@ -8,21 +8,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserService2Imp implements UserService2 {
 
     Map<String, RestUser> users;
     Utils utils;
 
-    public UserServiceImp() {
+    public UserService2Imp() {
     }
 
     //trzeba dodać adnotacje żeby user controller mogl wstrzyknac te utils
     //jak ktos nie rozumie to polecam poczytać o spring injection
     @Autowired
-    public UserServiceImp(Utils utils) {
+    public UserService2Imp(Utils utils) {
         this.utils = utils;
     }
 
