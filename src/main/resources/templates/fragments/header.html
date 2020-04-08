@@ -18,7 +18,14 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
             <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Wallet</a></li>
+            <form sec:authorize="isAuthenticated()">
+                <sec:authorize acc>
+                    <li class="nav-item"><a th:href="@{wallet}" class="nav-link">Wallet</a></li>
+                </sec:authorize>
+            </form>
+            <form sec:authorize="hasRole('ANONYMOUS')">
+                    <li class="nav-item"><a th:href="@{login}" class="nav-link">Wallet</a></li>
+            </form>
             <li class="nav-item"><a href="#" class="nav-link">Calculator</a></li>
         </ul>
     </div>
@@ -33,7 +40,7 @@
     <form sec:authorize="isAuthenticated()">
     <sec:authorize acc>
         <form class="form-inline">
-            <a th:href="@{index}" th:text="#{menu.logout}" class="btn btn-outline-light my-2 my-sm-0 btn-margin-left-right" type="submit">Logout</a>
+            <a th:href="@{logout}" th:text="#{menu.logout}" class="btn btn-outline-light my-2 my-sm-0 btn-margin-left-right" type="submit">Logout</a>
         </form>
     </sec:authorize>
     </form>

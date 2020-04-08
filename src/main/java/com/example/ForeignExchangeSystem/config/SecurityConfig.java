@@ -27,11 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().usersByUsernameQuery(usersQuery)
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(ds).passwordEncoder(bcp);
+                .dataSource(ds)
+                .passwordEncoder(bcp);
     }
-
+    @Override
     protected void configure(HttpSecurity httpSec) throws Exception {
         httpSec
                 .authorizeRequests()
@@ -46,18 +48,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .formLogin()
                 .loginPage("/login")
-                .failureUrl("/login?error=true") //error jesli zlee logowanie
-                .defaultSuccessUrl("/").usernameParameter("email") //przekierowanie na glowna strone jesli sie zalogujemy
+                .failureUrl("/login?error=true.html") //error jesli zlee logowanie
+                .defaultSuccessUrl("/index", true)
+                .usernameParameter("email") //przekierowanie na glowna strone jesli sie zalogujemy
                 .passwordParameter("password")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/") //wylogowanie uzytkownika
+                .logoutSuccessUrl("/index") //wylogowanie uzytkownika
                 .and().exceptionHandling().accessDeniedPage("/denied"); //strona wywywoływana gdy chcemy sie dostać gdzies bez potrzebnej roli
     }
 
     public void configure(WebSecurity webSec) throws Exception {
         //web security ignoruje te foldery można sobie tutaj coś dodac jeśli sie nad czymś pracuje
         webSec.ignoring()
-                .antMatchers("/resources/**", "/statics/**", "/css/**", "/js/**", "/images/**", "/incl/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**");
     }
 
 
