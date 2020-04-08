@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .btn-margin-left-right{
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Login</title>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/header:: header"></th:block>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <form class="card" th:action="@{/login}" method="post">
+                        <div class="card-header">Login</div>
+                        <div class="card-body">
+                            <form class="form-horizontal" method="post" action="#">
+                                <div class="form-group">
+                                    <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="cols-sm-2 control-label">Password</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                            <input type="password"  class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <input type="submit" value = Login class="btn btn-primary btn-lg btn-block login-button"/>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resources/static/js/bootstrap.js"></script>
+</body>
+</html>

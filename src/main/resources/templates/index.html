@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+    <style>
+        .btn-margin-left-right{
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+    </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Foreign Exchange System</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" type="text/css"/>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
 
     <div class="container">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3">
-            <h4><a href="#" class="navbar-brand">FES</a></h4>
-            <ul class="navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Privacy</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            </ul>
-        </nav>
+        <th:block th:include="fragments/header :: header"></th:block>
 
         <div class="jumbotron">
             <h1 style="text-align: center">Foreign Exchange System Home Page</h1>
