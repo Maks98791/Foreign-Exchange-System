@@ -26,7 +26,7 @@
             <form sec:authorize="hasRole('ANONYMOUS')">
                     <li class="nav-item"><a th:href="@{login}" class="nav-link">Wallet</a></li>
             </form>
-            <li class="nav-item"><a href="#" class="nav-link">Calculator</a></li>
+            <li class="nav-item"><a th:href="@{calculator}" class="nav-link">Calculator</a></li>
         </ul>
     </div>
     <form sec:authorize ="hasRole('ANONYMOUS')">
