@@ -46,6 +46,9 @@ public class User {
     @Transient
     private String operacja;
 
+    @Transient
+    private int role_num;
+
     public String getOperacja() {
         return operacja;
     }
@@ -110,4 +113,11 @@ public class User {
         this.roles = roles;
     }
 
+    public int getRole_num() {
+        return role_num;
+    }
+
+    public void setRole_num(int role_num) {
+        this.role_num = role_num;
+    }
 }
