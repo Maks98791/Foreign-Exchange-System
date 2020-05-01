@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Currency Converter</title>
+    <link rel="stylesheet" th:href="@{css/style.css}" type="text/css"/>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="container">
+        <th:block th:include="fragments/header :: header"></th:block>
+        <div class="header">
+            <h1>Currency Converter</h1>
+        </div>
+        <div class="date"></div>
+        <ul class="currencies"></ul>
+        <button class="add-currency-btn"><i class="fas fa-long-arrow-alt-left"></i>Add Currency</button>
+        <ul class="add-currency-list"></ul>
+    </div>
+
+    <!-- partial -->
+
+    <script type="text/javascript" th:src="@{js/script.js}"></script>
+
+
+</body>
+</html>
