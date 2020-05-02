@@ -21,6 +21,8 @@ public class WalletController {
         User user = userService.findUserByMail(username);
         int role_num = user.getRoles().iterator().next().getId();
         user.setRole_num(role_num);
+
+        model.addAttribute("wallet", user.getWallet());
         model.addAttribute("user", user);
 
         return "wallet";
