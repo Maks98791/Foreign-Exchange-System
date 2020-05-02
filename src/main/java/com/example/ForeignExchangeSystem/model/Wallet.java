@@ -3,19 +3,23 @@ package com.example.ForeignExchangeSystem.model;
 import javax.persistence.*;
 
 
-//@Entity
-//@Table(name = "wallet")
+@Entity
+@Table(name = "wallet")
 public class Wallet {
-    /*
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    private double money; //tylko przykladowo na razie
-    @OneToOne(mappedBy = "wallets")
+
+    @OneToOne(fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Wallet(double money ) {
-        this.money = money;
+    public Wallet() {
+    }
+    public Wallet(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -33,14 +37,4 @@ public class Wallet {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public double getMoney() {
-        return money;
-    }
-
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-     */
 }
