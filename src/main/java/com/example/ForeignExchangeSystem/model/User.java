@@ -125,7 +125,7 @@ public class User {
     public void setRole_num(int role_num) {
         this.role_num = role_num;
     }
-
+  
     public Wallet getWallet() {
         return wallet;
     }
