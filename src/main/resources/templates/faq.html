@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+    <link rel="stylesheet" th:href="@{css/faqstyle.css}" type="text/css"/>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/header :: header"></th:block>
+    <h1>FAQ</h1>
+
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                What is Fereign Exchange System?
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    It`s an web system for your foreign exchange transactions. You can keep an aye on your money, convert it to every single foreign currency and check the foreign exchanges.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How to log in?
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    You just need to click "Login" on the navigation bar. Right after that, you are going to be redirected to login form.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                What if i don`t have an account?
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    It`s not a problem! You just need to click "Register" button on navigation bar. When it`s redirect you to the register form, you will need to pass correct data. That`s it!.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                What funcionalities system provide for me?
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    <ul style="padding-left: 1rem;">
+                        <li>Private account in our database</li>
+                        <li>Your own wallet</li>
+                        <li>Currency converter</li>
+                        <li>Friendly owners!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How can i make you happy?
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                     Just give us 5!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{js/faqscript.js}"></script>
+
+</body>
+</html>
