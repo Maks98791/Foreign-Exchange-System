@@ -2,8 +2,10 @@ package com.example.ForeignExchangeSystem.Service;
 
 import com.example.ForeignExchangeSystem.model.User;
 import com.example.ForeignExchangeSystem.model.Role;
+import com.example.ForeignExchangeSystem.model.Wallet;
 import com.example.ForeignExchangeSystem.repository.RoleRepository;
 import com.example.ForeignExchangeSystem.repository.UserRepository;
+import com.example.ForeignExchangeSystem.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +26,10 @@ public class UserServiceImpl implements UserService {
     @Qualifier("roleRepository")
     @Autowired
     private RoleRepository roleRepository;
+    @Qualifier("walletRepository")
+    @Autowired
+    private WalletRepository walletRepository;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -39,6 +45,11 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleRepository.findByRole("ROLE_ADMIN"); //odczytanie id roli
         user.setRoles(new HashSet<Role>(Arrays.asList(role)));
+
+        Wallet wallet = new Wallet();
+        user.setWallet(wallet);
+        wallet.setUser(user);
+
         userRepository.save(user); //zapisujemy usera do repo
     }
 }

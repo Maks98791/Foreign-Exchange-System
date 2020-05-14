@@ -38,7 +38,7 @@ public class RegisterController {
         }
         if (result.hasErrors())
         {
-            returnPage = "rgister";
+            returnPage = "register";
         }
         else
         {
