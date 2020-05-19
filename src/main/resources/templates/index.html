@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <style>
-        .btn-margin-left-right{
-            margin-left: 2px;
-            margin-right: 2px;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{css/blockchainstyle.css}" type="text/css"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -20,15 +15,21 @@
 
         <div class="jumbotron">
             <h1 style="text-align: center">Foreign Exchange System Home Page</h1>
-            <p class="mt-5">Temporary home page of Foreign Exchange System.</p>
-            <p>
-                <button type="button" class="btn btn-primary mt-5" style="width: auto" href="#">Simple button</button>
-            </p>
+            <p class="mt-5">Welcome!</p>
         </div>
     </div>
 
+    <div class="container">
+        <div id="amount"></div>
+        <div id="exchange-values">
+            <div id="sell" class="marquee"></div>
+            <div id="exchange" class="marquee"></div>
+        </div>
+    </div>
+    
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/resources/static/js/bootstrap.js"></script>
+    <script type="text/javascript" th:src="@{js/blockchainscript.js}"></script>
 </body>
 </html>
