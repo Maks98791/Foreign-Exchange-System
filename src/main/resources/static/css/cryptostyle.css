@@ -36,3 +36,7 @@ h1 {
     padding: 0;
     margin: 5px;
 }
+
+*, input, button, select, textarea, label {
+    font-family: 'Lucida Sans Unicode',Monaco,Tahoma,Verdana,Arial;
+}

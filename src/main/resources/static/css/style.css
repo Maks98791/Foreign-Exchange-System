@@ -17,7 +17,6 @@ body {
 }
 .container {
   width: 500px;
-  margin: 20px auto;
   user-select: none;
   overflow-x: hidden;
   position: relative;
@@ -193,4 +192,8 @@ ul.add-currency-list li span {
   .info .base-currency-rate { margin-left: 3.5rem; }
   ul.add-currency-list { bottom: 48px; height: calc(100vh - 80px - 51px); }
   .add-currency-btn i { left: 25%; top:0.65rem; }
+}
+
+*, input, button, select, textarea, label {
+  font-family: 'Lucida Sans Unicode',Monaco,Tahoma,Verdana,Arial;
 }

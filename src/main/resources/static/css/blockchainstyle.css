@@ -52,3 +52,7 @@ h1 {
     0%   { text-indent: 27.5em }
     100% { text-indent: -105em }
 }
+
+*, input, button, select, textarea, label {
+    font-family: 'Lucida Sans Unicode',Monaco,Tahoma,Verdana,Arial;
+}

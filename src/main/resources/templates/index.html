@@ -4,6 +4,16 @@
     <link rel="stylesheet" th:href="@{css/blockchainstyle.css}" type="text/css"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    </script>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/374756/widgets.js'></script>
 
     <title>Foreign Exchange System</title>
     <th:block th:include="fragments/headerinc :: head"></th:block>
@@ -15,9 +25,10 @@
 
         <div class="jumbotron">
             <h1 style="text-align: center">Foreign Exchange System Home Page</h1>
-            <p class="mt-5">Welcome!</p>
+            <div style="margin-left: 70px; margin-top: 50px" id="zc"></div>
         </div>
     </div>
+
 
     <div class="container">
         <div id="amount"></div>

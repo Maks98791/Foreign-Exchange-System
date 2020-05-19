@@ -65,3 +65,7 @@ h1 {
         font-size: 14px;
     }
 }
+
+*, input, button, select, textarea, label {
+    font-family: 'Lucida Sans Unicode',Monaco,Tahoma,Verdana,Arial;
+}
