@@ -7,8 +7,9 @@
 }
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #34495e;
-    color: #fff;
+    background: url("https://i.ytimg.com/vi/aZg_CYU5cDA/maxresdefault.jpg");
+    background-repeat: repeat;
+    background-size: cover;
 }
 h1 {
     text-align: center;
