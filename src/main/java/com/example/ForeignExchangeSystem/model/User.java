@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -43,10 +44,8 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToOne(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "user")
-    private Wallet wallet;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Wallet> wallets;
 
     @Transient
     private String operacja;
@@ -125,12 +124,12 @@ public class User {
     public void setRole_num(int role_num) {
         this.role_num = role_num;
     }
-  
-    public Wallet getWallet() {
-        return wallet;
+
+    public List<Wallet> getWallets() {
+        return wallets;
     }
 
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
     }
 }

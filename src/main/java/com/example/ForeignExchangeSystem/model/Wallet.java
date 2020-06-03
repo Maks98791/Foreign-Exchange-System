@@ -1,6 +1,7 @@
 package com.example.ForeignExchangeSystem.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 
 
 @Entity
@@ -12,29 +13,49 @@ public class Wallet {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name="value")
+    private double value;
+
+    @Column(name="waluta")
+    private String waluta;
+
     public Wallet() {
-    }
-    public Wallet(User user) {
-        this.user = user;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public User getUser() {
         return user;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public String getWaluta() {
+        return waluta;
+    }
+
+    public void setWaluta(String waluta) {
+        this.waluta = waluta;
+    }
+
 }

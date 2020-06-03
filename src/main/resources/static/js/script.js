@@ -6,7 +6,7 @@ const currenciesList = document.querySelector(".currencies");
 
 const dataURL = "https://api.exchangeratesapi.io/latest";
 
-const initiallyDisplayedCurrencies = ["USD", "EUR", "GBP", "JPY", "RUB"];
+const initiallyDisplayedCurrencies = ["USD", "EUR", "PLN", "GBP", "JPY", "RUB"];
 let baseCurrency;
 let baseCurrencyAmount;
 
@@ -211,7 +211,7 @@ let currencies = [
   }
 ];
 
-// Event Listeners
+
 
 addCurrencyBtn.addEventListener("click", addCurrencyBtnClick);
 

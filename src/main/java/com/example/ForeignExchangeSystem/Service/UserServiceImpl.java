@@ -46,10 +46,7 @@ public class UserServiceImpl implements UserService {
         Role role = roleRepository.findByRole("ROLE_ADMIN"); //odczytanie id roli
         user.setRoles(new HashSet<Role>(Arrays.asList(role)));
 
-        Wallet wallet = new Wallet();
-        user.setWallet(wallet);
-        wallet.setUser(user);
+        userRepository.save(user); //zapisujemy usera do repo\
 
-        userRepository.save(user); //zapisujemy usera do repo
     }
 }
